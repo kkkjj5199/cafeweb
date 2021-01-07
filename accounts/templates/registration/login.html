@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit-icons.min.js"></script>
+           <style>
+.map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
+.map_wrap {position:relative;width:100%;height:500px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+.bg_white {background:#fff;}
+#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+#menu_wrap .option{text-align: center;}
+#menu_wrap .option p {margin:10px 0;}
+#menu_wrap .option button {margin-left:5px;}
+#placesList li {list-style: none;}
+#placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
+#placesList .item span {display: block;margin-top:4px;}
+#placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+#placesList .item .info{padding:10px 0 10px 55px;}
+#placesList .info .gray {color:#8a8a8a;}
+#placesList .info .jibun {padding-left:26px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
+#placesList .info .tel {color:#009900;}
+#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
+#placesList .item .marker_1 {background-position: 0 -10px;}
+#placesList .item .marker_2 {background-position: 0 -56px;}
+#placesList .item .marker_3 {background-position: 0 -102px}
+#placesList .item .marker_4 {background-position: 0 -148px;}
+#placesList .item .marker_5 {background-position: 0 -194px;}
+#placesList .item .marker_6 {background-position: 0 -240px;}
+#placesList .item .marker_7 {background-position: 0 -286px;}
+#placesList .item .marker_8 {background-position: 0 -332px;}
+#placesList .item .marker_9 {background-position: 0 -378px;}
+#placesList .item .marker_10 {background-position: 0 -423px;}
+#placesList .item .marker_11 {background-position: 0 -470px;}
+#placesList .item .marker_12 {background-position: 0 -516px;}
+#placesList .item .marker_13 {background-position: 0 -562px;}
+#placesList .item .marker_14 {background-position: 0 -608px;}
+#placesList .item .marker_15 {background-position: 0 -654px;}
+#pagination {margin:10px auto;text-align: center;}
+#pagination a {display:inline-block;margin-right:10px;}
+#pagination .on {font-weight: bold; cursor: default;color:#777;}
+
+    h1 {
+
+    font-size: 100px;
+    font-family: serif;}
+
+    ul.uk-navbar-nav {
+        margin-top: 10px;
+    }
+
+    ul.uk-navbar-nav { background :#F3E2A9; }
+
+    h3 {
+    margin-left: 15px;
+    font-family: serif;
+    background :#F3E2A9;
+    }
+
+</style>
+
+<div class="uk-position-relative">
+      <ul class="uk-navbar-nav"><h1>FIND MY CAFE</h1></ul>
+    <img src="static/img/c1.jpg" alt="">
+
+    <div class="uk-position-top">
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="http://127.0.0.1:8000/shop/" class="nav-link">Best</a></li>
+
+                                                    <li>
+                <a href="#">Review</a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                         <li><a href="{% url 'photo:photo_list'%}">List</a></li>
+                        <li><a href="{% url 'photo:photo_upload'%}">Upload</a></li>
+
+                    </ul>
+                </div>
+            </li>
+
+                    <li><a class="nav-item" href="{%url 'logout' %}" class="nav-link">Logout</a></li>
+                    <li><a class="nav-item" href="{%url 'login' %}" class="nav-link">Login</a></li>
+
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!--<div id="wrapper">-->
+<!--  <form>-->
+<!--  <div id="wrap">-->
+<!--      <div class="form">-->
+          {% block content %}
+        <div class="uk-navbar-center">
+          <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8 panel panel-default">
+                  <div class="alert alert-info">로그인 정보를 입력해주세요</div><br>
+                  <form action="" method="post">
+                      {{form.as_p}}
+                      {% csrf_token %}
+                      <input class="btn btn-primary" type="submit" value="Login">
+                      <a href="{% url 'register' %}" class="nav-link">
+                          <input class="btn btn-primary" type="button" value="회원가입">
+                      </a>
+
+
+                  </form>
+              </div>
+              <div class="col-md-2"></div>
+          </div>
+        </div>
+        {% endblock %}
+
+<!--      </div>-->
+<!--  </div>-->
+<!-- </form>-->
+<!--</div>-->
+
+
+
+
+

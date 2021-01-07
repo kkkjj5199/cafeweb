@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6$-=%ap+q*#d61)x6gp6rjmu2sz(r7&!6ngq-1h6#&+1n#*v*)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -48,14 +48,6 @@ INSTALLED_APPS = [
     'photo',
     'disqus',
     'shop',
-
-
-
-
-
-
-
-
 
 
 ]
@@ -111,7 +103,6 @@ DATABASES = {
     }
 }
 
-DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 
 
 # Password validation

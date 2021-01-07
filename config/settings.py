@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 import pymysql
+import dj_database_url
 pymysql.version_info = (1, 3, 13, "final", 0)   # !!!
 pymysql.install_as_MySQLdb()
 
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -108,6 +110,8 @@ DATABASES = {
 
     }
 }
+
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 
 
 # Password validation
